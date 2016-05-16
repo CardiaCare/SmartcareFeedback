@@ -13,6 +13,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
+import com.petrsu.cardiacare.smartcare.*;
 
 
 import java.io.BufferedReader;
@@ -35,26 +36,15 @@ public class MainActivity extends AppCompatActivity {
     public MainActivity() {
     }
 
-    // Native code part begin
-    static {
-        System.loadLibrary("smartcare");
-    }
-
     String TAG = "SS-main";
 
     /*
     * Common functions for interaction with SmartSpace
      */
-    public native long connectSmartSpace(String name, String ip, int port);
 
-    public native void disconnectSmartSpace(long nodeDescriptor);
-    public native String initPatient (long nodeDescriptor);
-    public native Questionnaire getQuestionnaire(long nodeDescriptor);
-
-    public native Feedback getFeedback(long nodeDescriptor, String patientUri);
 
     static protected long nodeDescriptor;
-
+    SmartCareLibrary smart;
     static protected String patienUri;
     // Native code part end
     Questionnaire questionnaire;
@@ -69,12 +59,13 @@ public class MainActivity extends AppCompatActivity {
         /*****************************
          * SS init
          *****************************/
-        nodeDescriptor = connectSmartSpace("X", "78.46.130.194", 10010);
+        smart = new SmartCareLibrary();
+        nodeDescriptor = smart.connectSmartSpace("X", "78.46.130.194", 10010);
         if (nodeDescriptor == -1) {
             return;
         }
 
-        patienUri = initPatient(nodeDescriptor);
+        patienUri = smart.initPatient(nodeDescriptor);
 
         setRegisteredActivity();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -87,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //questionnaire = getQuestionnaire(nodeDescriptor);
                 ///printQuestionnaire(questionnaire);
-                feedback = getFeedback(nodeDescriptor, patienUri);
+                feedback = smart.getFeedback(nodeDescriptor, patienUri);
                 printFeedback(feedback);
             }
         });
@@ -228,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
         moveTaskToBack(true);
         super.onDestroy();
 
-        disconnectSmartSpace(nodeDescriptor);
+        smart.disconnectSmartSpace(nodeDescriptor);
         System.exit(0);
     }
 
