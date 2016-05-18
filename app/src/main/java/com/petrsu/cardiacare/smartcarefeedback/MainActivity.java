@@ -1,5 +1,6 @@
 package com.petrsu.cardiacare.smartcarefeedback;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,12 +44,13 @@ public class MainActivity extends AppCompatActivity {
      */
 
 
+    static protected Questionnaire questionnaire;
     static protected long nodeDescriptor;
     SmartCareLibrary smart;
     static protected String patienUri;
     // Native code part end
-    Questionnaire questionnaire;
-    Feedback feedback;
+    //Questionnaire questionnaire;
+    static protected Feedback feedback;
     Toolbar mToolbar;
 
     String filename = "questionnaire.json";
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 //questionnaire = getQuestionnaire(nodeDescriptor);
                 ///printQuestionnaire(questionnaire);
                 feedback = smart.getFeedback(nodeDescriptor, patienUri);
+                questionnaire = smart.getQuestionnaire(nodeDescriptor);
                 printFeedback(feedback);
             }
         });
@@ -100,10 +103,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String jasonFromFile = readSavedData();
                     Gson json = new Gson();
-                    Questionnaire qst = json.fromJson(jasonFromFile,Questionnaire.class);
+                    Questionnaire qst = json.fromJson(jasonFromFile, Questionnaire.class);
                     printQuestionnaire(qst);
             }
         });
+
+        Button QuestionnaireLoad; // QuestionnaireActivity
+        QuestionnaireLoad = (Button) findViewById(R.id.QuestionnaireLoad);// Questionnaire
+        QuestionnaireLoad.setOnClickListener(new View.OnClickListener() {// Questionaire
+            @Override // Questionaire
+            public void onClick(View v) {// Questionnaire
+                Intent intentq = new Intent(MainActivity.this, QuestionnaireActivity.class);// Questionnaire
+                startActivity(intentq);// Questionnaire
+
+            }// Questionaire
+        });// Questionnaire
     }
 
     public void writeData ( String data ){
@@ -170,28 +184,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void printFeedback(Feedback feedback){
-        Log.i(TAG, feedback.getUri());
+        //Log.i(TAG, feedback.getUri());
+        Log.i(TAG, feedback.getQuestionnaireUri());
         LinkedList<Response> q = feedback.getResponses();
-        Log.i(TAG, "Number of responses " + q.size());
+        //Log.i(TAG, "Number of responses " + q.size());
+
         for (int i = 0; i < q.size(); i++) {
             Response resp = q.get(i);
-            Log.i(TAG, resp.getUri());
-            LinkedList<ResponseItem> a = resp.getResponseItems();
+            Log.i(TAG, "response uri " + resp.getUri());
+            Log.i(TAG, "question uri " + resp.getQuestionUri());
+            //resp.setQuestionUri(feedback.getQuestionnaireUri());
+            //Log.i(TAG, resp.getQuestionUri());
+                    //Log.i(TAG, resp.getResponseItems());
+                    LinkedList < ResponseItem > a = resp.getResponseItems();
+            //Log.i(TAG, "Number " + a.size());
             if (a.size()>0) {
                 for(int h = 0; h < a.size(); h++) {
                     ResponseItem it = a.get(h);
-                    Log.i(TAG,it.getUri());
+                    //Log.i(TAG,it.getUri());
                     if (it.getTextItem()!= null)
-                        Log.i(TAG,it.getTextItem());
+                        Log.i(TAG,"item text "+it.getTextItem());
                     if (it.getFileUri()!= null)
-                        Log.i(TAG, it.getFileUri());
+                        Log.i(TAG, "iten file " +it.getFileUri());
                     LinkedList<AnswerItem> la = it.getLinkedItems();
+                    //Log.i(TAG, "Number of " + la.size());
                     if (la.size()>0) {
                         for (int r = 0; r < la.size(); r++) {
                             AnswerItem lai = la.get(r);
-                            Log.i(TAG, lai.getUri());
-                            Log.i(TAG, lai.getItemText());
-                            Log.i(TAG, lai.getItemScore());
+                            Log.i(TAG,"answer item uri "+ lai.getUri());
+                            Log.i(TAG, "answer item text "+lai.getItemText());
+                            Log.i(TAG,"answer item score "+ lai.getItemScore());
                         }
                     }
                 }
