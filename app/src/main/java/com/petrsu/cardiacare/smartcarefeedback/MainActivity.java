@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     * Common functions for interaction with SmartSpace
      */
 
-
     static protected Questionnaire questionnaire;
     static protected long nodeDescriptor;
     SmartCareLibrary smart;
