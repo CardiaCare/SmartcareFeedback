@@ -41,6 +41,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
         //int[] Types = new int[q.size()];
         String TAG = "SS-main";
 
+
         QuestionnaireAdapter = new RecyclerViewAdapter(MainActivity.feedback.getResponses());
         QuestionnaireRecyclerView.setAdapter(QuestionnaireAdapter);
     }

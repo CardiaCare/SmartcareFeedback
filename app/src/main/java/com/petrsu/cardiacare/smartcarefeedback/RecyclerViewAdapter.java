@@ -41,12 +41,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        // создать адаптер и закинуть данные в него
-
-        /*Response resp = Responses.get(position);
+        Response resp = Responses.get(position);
         LinkedList<ResponseItem> a = resp.getResponseItems();
         DichotomousViewHolder holder = (DichotomousViewHolder) viewHolder;
         LinkedList<Question> q = MainActivity.questionnaire.getQuestions();
+        //LinkedList<Response> m = feedback.getResponses();
+        //LinkedList < ResponseItem > RI = resp.getResponseItems();
+        //Response resp = q.get(i);
 
         for (int i = 0; i < q.size(); i++) {
             Question qst = q.get(i);
@@ -54,10 +55,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             str = resp.getQuestionUri();
             str1 = qst.getUri();
             Log.i("TAG", str + "\n" + str1);
+
+            //holder.DichotomousQuestion.setText(resp.getDescription());
             if (str.equals(str1)) {
                 Log.i("TAG", qst.getDescription());
+                //holder.DichotomousQuestion.setText(qst.getDescription());
                 if (a.size() > 0) {
                     holder.DichotomousQuestion.setText(qst.getDescription());
+
+                    //Item = a.get(1);
+                    //holder.DichotomousQuestion2.setText(Item.getTextItem());
                     for (int h = 0; h < a.size();h++) {
                         ResponseItem it = a.get(h);
                         holder.DichotomousQuestion2.setText(it.getTextItem());
@@ -75,7 +82,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     }
                 }
             }
-        }*/
+        }
     }
 
     @Override
