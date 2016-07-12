@@ -14,9 +14,34 @@ extern "C" {
 
 char* generate_uri(char *);
 
+/*******************************************/
+int kp_remove_individual(long, char *);
+int kp_remove_alarm(long nodeDescriptor, char *individual_uri);
+
 int kp_init_person(sslog_node_t *, char *);
 
-int kp_init_patient(char **, sslog_node_t *);
+int kp_init_patient(char **, long);
+
+int kp_init_medic(char **, long);
+
+int kp_init_auth_request(long, char *, char**);
+
+int kp_get_auth_responce(long, char *);
+
+int kp_init_location(long, char *, char**);
+
+int kp_send_location(long, char *, char *, char *, char *);
+
+int kp_send_alarm(long, char *, char**);
+
+int kp_send_feedback(long, char *, char *);
+
+int kp_insert_person_name(long, char *, char *);
+
+int kp_update_person_name(long, char *, char *);
+
+char* generate_uri(char *);
+/*******************************************/
 
 jobject kp_get_next_question(JNIEnv* , jobject *, sslog_node_t *, sslog_individual_t *, char* , char** );
 jobject kp_get_first_question(JNIEnv* , jobject *, sslog_node_t *, sslog_individual_t *, char** );
@@ -33,13 +58,6 @@ int add_answer_item(JNIEnv* , jobject *, sslog_node_t *, sslog_individual_t *, c
 
 long kp_connect_smartspace(char*, char*, int);
 int kp_disconnect_smartpace(long);
-
-
-sslog_individual_t* kp_get_feedback(JNIEnv* env, sslog_node_t *node, char* patient_uri, char **feedback_uri, char **questionnaire_uri);
-int kp_get_responses(JNIEnv* env,  jobject *feedback_obj, sslog_node_t *node_ss, sslog_individual_t* feedback);
-int kp_get_response_items(JNIEnv* env, jobject *response, sslog_node_t *node_ss, sslog_individual_t *response_ss);
-int add_linked_answer_item_to_response(JNIEnv* env, jobject *response_item,   sslog_node_t *node_ss, sslog_individual_t *item);
-
 
 #ifdef	__cplusplus
 }

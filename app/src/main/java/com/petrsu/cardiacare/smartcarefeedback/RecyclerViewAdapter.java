@@ -18,7 +18,7 @@ import org.osmdroid.ResourceProxy;
 import java.util.LinkedList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    LinkedList <Question> Questions;
+    LinkedList <Question> Patients;
     LinkedList <Response> Responses;
     //int[] TypesQuestions;
     String str, str1;
@@ -44,45 +44,45 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Response resp = Responses.get(position);
         LinkedList<ResponseItem> a = resp.getResponseItems();
         DichotomousViewHolder holder = (DichotomousViewHolder) viewHolder;
-        LinkedList<Question> q = MainActivity.questionnaire.getQuestions();
+        //LinkedList<Question> q = MainActivity.questionnaire.getQuestions();
         //LinkedList<Response> m = feedback.getResponses();
         //LinkedList < ResponseItem > RI = resp.getResponseItems();
         //Response resp = q.get(i);
 
-        for (int i = 0; i < q.size(); i++) {
-            Question qst = q.get(i);
-            //Log.i("TAG", "Number " +  qst.getDescription());
-            str = resp.getQuestionUri();
-            str1 = qst.getUri();
-            Log.i("TAG", str + "\n" + str1);
-
-            //holder.DichotomousQuestion.setText(resp.getDescription());
-            if (str.equals(str1)) {
-                Log.i("TAG", qst.getDescription());
-                //holder.DichotomousQuestion.setText(qst.getDescription());
-                if (a.size() > 0) {
-                    holder.DichotomousQuestion.setText(qst.getDescription());
-
-                    //Item = a.get(1);
-                    //holder.DichotomousQuestion2.setText(Item.getTextItem());
-                    for (int h = 0; h < a.size();h++) {
-                        ResponseItem it = a.get(h);
-                        holder.DichotomousQuestion2.setText(it.getTextItem());
-                        LinkedList<AnswerItem> la = it.getLinkedItems();
-                        if (la.size() > 0) {
-                            for (int r = 0; r < la.size(); r++) {
-                                AnswerItem lai = la.get(r);
-                                //Log.i("TAG", "answer item uri " + lai.getUri());
-                                holder.DichotomousQuestion2.setText(lai.getItemText());
-                                //Log.i("TAG", "answer item text " + lai.getItemText());
-                                //Log.i("TAG", "answer item score " + lai.getItemScore());
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
+//        for (int i = 0; i < q.size(); i++) {
+//            Question qst = q.get(i);
+//            //Log.i("TAG", "Number " +  qst.getDescription());
+//            str = resp.getQuestionUri();
+//            str1 = qst.getUri();
+//            Log.i("TAG", str + "\n" + str1);
+//
+//            //holder.DichotomousQuestion.setText(resp.getDescription());
+//            if (str.equals(str1)) {
+//                Log.i("TAG", qst.getDescription());
+//                //holder.DichotomousQuestion.setText(qst.getDescription());
+//                if (a.size() > 0) {
+//                    holder.DichotomousQuestion.setText(qst.getDescription());
+//
+//                    //Item = a.get(1);
+//                    //holder.DichotomousQuestion2.setText(Item.getTextItem());
+//                    for (int h = 0; h < a.size();h++) {
+//                        ResponseItem it = a.get(h);
+//                        holder.DichotomousQuestion2.setText(it.getTextItem());
+//                        LinkedList<AnswerItem> la = it.getLinkedItems();
+//                        if (la.size() > 0) {
+//                            for (int r = 0; r < la.size(); r++) {
+//                                AnswerItem lai = la.get(r);
+//                                //Log.i("TAG", "answer item uri " + lai.getUri());
+//                                holder.DichotomousQuestion2.setText(lai.getItemText());
+//                                //Log.i("TAG", "answer item text " + lai.getItemText());
+//                                //Log.i("TAG", "answer item score " + lai.getItemScore());
+//                            }
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     @Override

@@ -40,21 +40,6 @@ int init_global_instances(JNIEnv* env, jobject obj) {
     class_answer_item = (jclass * )(*env)->NewGlobalRef(env, _class_answer_item);
     if (NULL == class_answer_item) { return -1; }
 
-    jclass _class_feedback = (*env)->FindClass(env, "com/petrsu/cardiacare/smartcare/Feedback");
-    if (_class_feedback == NULL) { return -1; }
-    class_feedback = (jclass * )(*env)->NewGlobalRef(env, _class_feedback);
-    if (NULL == class_feedback) { return -1; }
-
-    jclass _class_response = (*env)->FindClass(env, "com/petrsu/cardiacare/smartcare/Response");
-    if (_class_response == NULL) { return -1; }
-    class_response = (jclass * )(*env)->NewGlobalRef(env, _class_response);
-    if (NULL == class_response) { return -1; }
-
-    jclass _class_response_item = (*env)->FindClass(env, "com/petrsu/cardiacare/smartcare/ResponseItem");
-    if (_class_response_item == NULL) { return -1; }
-    class_response_item = (jclass * )(*env)->NewGlobalRef(env, _class_response_item);
-    if (NULL == class_response_item) { return -1; }
-
     questionnaire_constructor = (*env)->GetMethodID(env, class_questionnaire, "<init>", "(Ljava/lang/String;)V");
     if (questionnaire_constructor == NULL) { return -1; }
 
@@ -78,26 +63,6 @@ int init_global_instances(JNIEnv* env, jobject obj) {
 
     add_answer_item_i = (*env)->GetMethodID(env,  class_answer, "addAnswerItem", "(Lcom/petrsu/cardiacare/smartcare/AnswerItem;)V");
     if (add_answer_item_i == NULL) { return -1; }
-
-
-    feedback_constructor = (*env)->GetMethodID(env, class_feedback, "<init>", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
-    if (feedback_constructor == NULL) { return -1; }
-
-    response_constructor = (*env)->GetMethodID(env, class_response, "<init>", "(Ljava/lang/String;Ljava/lang/String;)V");
-    if (response_constructor == NULL) { return -1; }
-
-    response_item_constructor = (*env)->GetMethodID(env, class_response_item, "<init>", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
-    if (response_item_constructor == NULL) { return -1; }
-
-
-    add_response = (*env)->GetMethodID(env,  class_feedback, "addResponse", "(Lcom/petrsu/cardiacare/smartcare/Response;)V");
-    if (add_response == NULL) { return -1; }
-
-    add_response_item = (*env)->GetMethodID(env,  class_response, "addResponseItem", "(Lcom/petrsu/cardiacare/smartcare/ResponseItem;)V");
-    if (add_response_item == NULL) { return -1; }
-
-    add_linked_answer_item = (*env)->GetMethodID(env,  class_response_item, "addLinkedAnswerItem", "(Lcom/petrsu/cardiacare/smartcare/AnswerItem;)V");
-    if (add_linked_answer_item == NULL) { return -1; }
 
 }
 int init_JVM_instance(JNIEnv* env){

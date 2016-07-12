@@ -28,17 +28,6 @@ jmethodID add_subanswer;
 jmethodID item_constructor;
 jmethodID add_answer_item_i;
 
-jclass *class_feedback;
-jclass *class_response;
-jclass *class_response_item;
-jmethodID feedback_constructor;
-jmethodID response_constructor;
-jmethodID response_item_constructor;
-jmethodID add_response;
-jmethodID add_response_item;
-jmethodID add_linked_answer_item;
-
-
 
 
 

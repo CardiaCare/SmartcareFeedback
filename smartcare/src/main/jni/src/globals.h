@@ -31,14 +31,3 @@ extern jmethodID add_answer_item_i;
 
 
 
-extern jclass *class_feedback;
-extern jclass *class_response;
-extern jclass *class_response_item;
-extern jmethodID feedback_constructor;
-extern jmethodID response_constructor;
-extern jmethodID response_item_constructor;
-extern jmethodID add_response;
-extern jmethodID add_response_item;
-extern jmethodID add_linked_answer_item;
-
-

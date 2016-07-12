@@ -38,7 +38,7 @@
 
 
         <activity
-            android:name=".QuestionnaireActivity"
+            android:name=".FeedbackActivity"
             android:label="Questionnaire"
             android:theme="@style/AppTheme"
             android:parentActivityName=".MainActivity">

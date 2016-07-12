@@ -24,16 +24,60 @@ JNIEXPORT jlong JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_co
 JNIEXPORT void JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_disconnectSmartSpace
   (JNIEnv *, jobject, jlong);
 
-JNIEXPORT jobject JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getQuestionnaire
-(JNIEnv *, jobject, jlong);
+/*****************************************************************************************/
 
 JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_initPatient
-        (JNIEnv *, jobject, jlong);
+  (JNIEnv *, jobject, jlong);
 
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_initMedic
+  (JNIEnv *, jobject, jlong);
 
-
-JNIEXPORT jobject JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getFeedback
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_initAuthRequest
         (JNIEnv *, jobject, jlong, jstring);
+
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_initLocation
+        (JNIEnv *, jobject, jlong, jstring);
+
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_sendAlarm
+        (JNIEnv *, jobject, jlong, jstring);
+
+JNIEXPORT jint JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_sendLocation
+        (JNIEnv *, jobject, jlong, jstring, jstring, jstring, jstring);
+
+JNIEXPORT jint JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_sendFeedback
+         (JNIEnv *, jobject, jlong, jstring, jstring);
+
+JNIEXPORT void JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_removeIndividual
+        (JNIEnv*, jobject, jlong, jstring);
+
+JNIEXPORT void JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_removeAlarm
+(JNIEnv*, jobject, jlong, jstring);
+
+JNIEXPORT jint JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_insertPersonName
+        (JNIEnv *, jobject , jlong , jstring , jstring );
+
+JNIEXPORT jint JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_updatePersonName
+        (JNIEnv *, jobject , jlong , jstring , jstring );
+
+JNIEXPORT jint JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getAuthResponce
+        (JNIEnv *, jobject , jlong , jstring);
+
+/*****************************************************************************************/
+
+
+
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getQuestionnaire
+(JNIEnv *, jobject, jlong);
+
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getQuestionnaireVersion
+(JNIEnv *, jobject, jlong,jstring);
+
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getQuestionnaireSeverUri
+(JNIEnv *, jobject, jlong,jstring);
+
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getPersonInformation
+(JNIEnv *, jobject, jlong,jstring);
+
 
 #ifdef __cplusplus
 }
@@ -41,8 +85,8 @@ JNIEXPORT jobject JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_
 #endif
 /* Header for class com_petrsu_cardiacare_smartcarequestionnaire_MainActivity_PatientListTask */
 
-#ifndef _Included_com_petrsu_cardiacare_smartcare_SmartCareLibrary_PatientListTask
-#define _Included_com_petrsu_cardiacare_smartcare_SmartCareLibrary_PatientListTask
+#ifndef _Included_com_petrsu_cardiacare_smartcare_SmartCare_PatientListTask
+#define _Included_com_petrsu_cardiacare_smartcare_SmartCare_PatientListTask
 #ifdef __cplusplus
 extern "C" {
 #endif

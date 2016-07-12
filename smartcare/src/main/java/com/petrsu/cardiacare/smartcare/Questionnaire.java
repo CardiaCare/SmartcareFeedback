@@ -7,6 +7,8 @@ import java.util.LinkedList;
  */
 public class Questionnaire {
     private String uri;
+    private String serverURI;
+    private String version;
     // questions - связный список элементов типа Question
     LinkedList <Question> questions;
 
@@ -15,7 +17,7 @@ public class Questionnaire {
         questions = new LinkedList<Question>();
     }
     // Получение идентификатора вопросника из ИП
-    String getUri(){
+    public String getUri(){
         return uri;
     }
 
@@ -23,10 +25,26 @@ public class Questionnaire {
     public void addQuestion(Question question){
         questions.addLast(question);
     }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setServerURI(String serverURI) {
+        this.serverURI = serverURI;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     // Получение списка вопросов
     public LinkedList <Question> getQuestions(){
          return questions;
      }
 
+    public String getServerURI() {
+        return serverURI;
+    }
 
 }

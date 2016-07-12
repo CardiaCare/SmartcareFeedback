@@ -71,6 +71,52 @@ char* generate_uri(char *uri){
     return newstring;
 }
 
+/*******************************************/
+int kp_remove_alarm(long nodeDescriptor, char *individual_uri){
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        return -1;
+    }
+
+    sslog_triple_t *req_triple = sslog_new_triple_detached(
+            SS_RDF_SIB_ANY,
+            "http://oss.fruct.org/smartcare#sendAlarm",
+            individual_uri,
+            SS_RDF_TYPE_URI, SS_RDF_TYPE_URI);
+    sslog_node_remove_triple(node, req_triple);
+
+    sslog_triple_t *req_triple2 = sslog_new_triple_detached(
+            SS_RDF_SIB_ANY,
+            "http://oss.fruct.org/smartcare#responseToAlarm",
+            individual_uri,
+            SS_RDF_TYPE_URI, SS_RDF_TYPE_URI);
+    sslog_node_remove_triple(node, req_triple2);
+
+    sslog_individual_t *ind = sslog_node_get_individual_by_uri(node, individual_uri);
+
+    if (ind == NULL){
+        return -1;
+    }
+    sslog_node_remove_individual_with_local(node, ind);
+    return 0;
+}
+
+
+int kp_remove_individual(long nodeDescriptor, char *individual_uri){
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        return -1;
+    }
+
+    sslog_individual_t *ind = sslog_node_get_individual_by_uri(node, individual_uri);
+
+    if (ind == NULL){
+        return -1;
+    }
+
+    sslog_node_remove_individual_with_local(node, ind);
+    return 0;
+}
 
 /*
 * Person
@@ -93,31 +139,223 @@ int kp_init_person(sslog_node_t *node, char* patient_uri){
 /*
 * Patient
 */
-int kp_init_patient(char **uri, sslog_node_t *node){
-    list_t* patients;
-
-    patients = sslog_node_get_individuals_by_class(node, CLASS_PERSON);
-
-    if (list_is_null_or_empty(patients) == true) {
-        __android_log_print(ANDROID_LOG_INFO, TAG,"There are no such individuals.");
-        return NULL;
+int kp_init_patient(char **uri, long nodeDescriptor){
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Node Error");
+        return -1;
     }
-    sslog_individual_t *patient_ss = NULL;
-    list_head_t *pos = NULL;
 
-    char* uri_ss;
-    list_for_each(pos, &patients->links)
-    {
-        list_t *node = list_entry(pos, list_t, links);
-        patient_ss = (sslog_individual_t *) node->data;
-        sslog_triple_t *patient_uri_from_triple = sslog_individual_to_triple (patient_ss);
-        uri_ss  = patient_uri_from_triple->subject;
-        *uri =  uri_ss;
-        break;
+    char * _patient_uri = sslog_generate_uri(CLASS_PATIENT);
+    char *patient_uri = generate_uri(_patient_uri);
+
+    sslog_individual_t *patient = sslog_new_individual(CLASS_PATIENT, patient_uri);
+
+    //free(patient_uri);
+
+    if (patient == NULL) {
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Error patient: %s", sslog_error_get_last_text());
+        return -1;
     }
+
+    //insert individual to SmartSpace
+    sslog_node_insert_individual(node, patient);
+
+    int result = kp_init_person(node, patient_uri);
+    if (result == -1)
+        return -1;
+
+    *uri = patient_uri;
 
     return 0;
 }
+
+int kp_init_medic(char **uri, long nodeDescriptor){
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Node Error");
+        return -1;
+    }
+
+    char * _medic_uri = sslog_generate_uri(CLASS_MEDIC);
+    char *medic_uri = generate_uri(_medic_uri);
+
+    sslog_individual_t *medic = sslog_new_individual(CLASS_MEDIC, medic_uri);
+
+    //free(medic_uri);
+
+    if (medic == NULL) {
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Error medic: %s", sslog_error_get_last_text());
+        return -1;
+    }
+
+    //insert individual to SmartSpace
+    sslog_node_insert_individual(node, medic);
+/*
+    int result = kp_init_person(node, medic_uri);
+    if (result == -1)
+        return -1;
+*/
+    *uri = medic_uri;
+
+    return 0;
+}
+
+int kp_init_auth_request(long nodeDescriptor, char *patient_uri, char** uri){
+
+    return 0;
+}
+
+int kp_get_auth_responce(long nodeDescriptor, char *auth_uri){
+   return 0;
+}
+
+int kp_init_location(long nodeDescriptor, char *individual_uri, char** uri ){
+    //get node from SmartSpace
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Node Error");
+        return -1;
+    }
+
+    sslog_individual_t *ind = sslog_node_get_individual_by_uri(node, individual_uri);
+
+
+    //Create Location individual with latitude and longitude properties
+    char * _location_uri = sslog_generate_uri(CLASS_LOCATION);
+    char *location_uri = generate_uri(_location_uri);
+
+    //__android_log_print(ANDROID_LOG_INFO, TAG, "location_uri %s.", location_uri);
+
+    sslog_individual_t *location = sslog_new_individual(CLASS_LOCATION, location_uri);
+
+    if (location == NULL) {
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Error location: %s", sslog_error_get_last_text());
+        return -1;
+    }
+
+    // Location properties initialization
+    sslog_insert_property(location, PROPERTY_LAT, "0.0");
+    sslog_insert_property(location, PROPERTY_LONG, "0.0");
+
+    // insert individual with properties to SmartSpace
+    sslog_node_insert_individual(node, location);
+    // insert location property to specific individual
+    sslog_node_insert_property(node, ind, PROPERTY_HASPERSLOCATION, location);
+
+    *uri = location_uri;
+    return 0;
+}
+
+int kp_send_location(long nodeDescriptor, char *patient_uri, char *location_uri, char *latitude, char *longitude){
+    //get node from SmartSpace
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Node Error");
+        return -1;
+    }
+
+    //get patient and location from SmartSpace
+    sslog_individual_t *patient = sslog_node_get_individual_by_uri(node, patient_uri);
+    sslog_individual_t *location = sslog_node_get_individual_by_uri(node, location_uri);
+
+    //update in SmartSpace Location's property: latitude
+    char *latitude_from_ss = sslog_node_get_property(node, location,  PROPERTY_LAT);
+    //__android_log_print(ANDROID_LOG_INFO, TAG, "latitude_from_ss %s",latitude_from_ss);
+    //__android_log_print(ANDROID_LOG_INFO, TAG, "latitude %s",latitude);
+    sslog_node_update_property(node, location,  PROPERTY_LAT, latitude_from_ss,latitude);
+
+    //update in SmartSpace Location's property: longitude
+    char *longitude_from_ss = sslog_node_get_property(node, location,  PROPERTY_LONG);
+    //__android_log_print(ANDROID_LOG_INFO, TAG, "longitudee_from_ss %s",longitude_from_ss);
+    //__android_log_print(ANDROID_LOG_INFO, TAG, "longitude %s",longitude);
+    sslog_node_update_property(node, location,  PROPERTY_LONG, longitude_from_ss,longitude);
+
+    return 0;
+}
+
+int kp_send_alarm(long nodeDescriptor, char *patient_uri, char **alarm_uri_ind){
+
+    //get node from SmartSpace
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Node Error");
+        return -1;
+    }
+
+    //get patient from SmartSpace
+
+    sslog_individual_t *patient = sslog_node_get_individual_by_uri(node, patient_uri);
+
+    //create alarm
+    char * _alarm_uri = sslog_generate_uri(CLASS_ALARM);
+    char *alarm_uri = generate_uri(_alarm_uri);
+
+    sslog_individual_t *alarm = sslog_new_individual(CLASS_ALARM, alarm_uri);
+    //__android_log_print(ANDROID_LOG_INFO, TAG, "alarm_uri %s.", alarm_uri);
+
+    if (alarm == NULL) {
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Error alarm: %s", sslog_error_get_last_text());
+        return -1;
+    }
+
+    sslog_insert_property(alarm, PROPERTY_ALARMSTATUS, "Fibrillation");
+
+    //insert individual with properties to SmartSpace
+    sslog_node_insert_individual(node, alarm);
+
+    //insert property, that connect alarm with patient
+    sslog_node_insert_property(node, patient, PROPERTY_SENDALARM, alarm);
+    *alarm_uri_ind = alarm_uri;
+    return 0;
+}
+
+int kp_insert_person_name(long nodeDescriptor, char *patient_uri, char *new_name){
+    //get node from SmartSpace
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Node Error");
+        return -1;
+    }
+
+    //get patient from SmartSpace
+    sslog_individual_t *patient = sslog_node_get_individual_by_uri(node, patient_uri);
+
+    // properties initialization
+    const char *previous_name = (const char *) sslog_node_get_property(node, patient, PROPERTY_NAME);
+    if (previous_name == NULL){
+        sslog_node_insert_property(node, patient, PROPERTY_NAME, new_name);
+    }
+    else{
+        sslog_node_update_property(node, patient, PROPERTY_NAME, previous_name, new_name);
+    }
+    return 0;
+
+}
+
+int kp_update_person_name(long nodeDescriptor, char *patient_uri, char *new_name){
+    //get node from SmartSpace
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Node Error");
+        return -1;
+    }
+
+    //get patient from SmartSpace
+    sslog_individual_t *patient = sslog_node_get_individual_by_uri(node, patient_uri);
+
+    // properties initialization
+    const char *previous_name = (const char *) sslog_node_get_property(node, patient, PROPERTY_NAME);
+
+    if (previous_name  == NULL) {
+        //__android_log_print(ANDROID_LOG_INFO, TAG,"No name");
+    }
+    sslog_node_update_property(node, patient, PROPERTY_NAME, previous_name, new_name);
+    return 0;
+}
+
+
+/*******************************************/
 
 sslog_individual_t* kp_get_questionnaire(sslog_node_t *node, char **questionnaire_uri){
     list_t* questionnaires;
@@ -403,159 +641,31 @@ int add_answer_item(JNIEnv* env, jobject *answer, sslog_node_t *node_ss, sslog_i
     return 0;
 }
 
-/*
- *
- * Feedback
- *
- */
-
-sslog_individual_t* kp_get_feedback(JNIEnv* env, sslog_node_t *node, char* patient_uri, char **feedback_uri, char **questionnaire_uri){
-
-    sslog_individual_t* patient;
-    patient = sslog_node_get_individual_by_uri(node,  patient_uri);
-
-    sslog_individual_t *feedback = (sslog_individual_t *) sslog_node_get_property(node, patient, PROPERTY_HASFEEDBACK);
-    if(feedback == NULL){
+int kp_send_feedback(long nodeDescriptor, char *patient_uri, char *feedback_date){
+    //get node from SmartSpace
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        //__android_log_print(ANDROID_LOG_INFO, TAG, "Node Error");
         return -1;
     }
-    sslog_node_populate(node, feedback);
+    //get patient and feeddback from SmartSpace
+    sslog_individual_t *patient = sslog_node_get_individual_by_uri(node, patient_uri);
 
-    char* feedback_uri_ss = sslog_entity_get_uri(feedback);
-    *feedback_uri = feedback_uri_ss;
+    char * _feedback_uri = sslog_generate_uri(CLASS_FEEDBACK);
+        char *feedback_uri = generate_uri(_feedback_uri);
+    sslog_individual_t *feedback = sslog_new_individual(CLASS_FEEDBACK, feedback_uri);
 
-    sslog_individual_t *questionnaire = (sslog_individual_t *) sslog_node_get_property(node, feedback, PROPERTY_RESPONDEDTO);
-    if(questionnaire == NULL){
+    if (feedback == NULL) {
         return -1;
     }
-    sslog_node_populate(node, questionnaire);
-
-    char* questionnaire_uri_ss = sslog_entity_get_uri(questionnaire);
-    *questionnaire_uri = questionnaire_uri_ss;
-
-    return feedback;
-}
-
-int kp_get_responses(JNIEnv* env,  jobject *feedback_obj, sslog_node_t *node_ss, sslog_individual_t* feedback){
-
-    char* feedback_uri =  sslog_entity_get_uri(feedback);
-
-    //char* rdf_property = NULL;
-    //char* rdf_ontology = "http://www.semanticweb.org/cardiacare/ontologies/2016/1/untitled-ontology-35#";
-    //int result = asprintf(&rdf_property, "%s%s", rdf_ontology, answer_type);
-    //if (result == -1) rdf_property = NULL;
-
-    sslog_triple_t *req_triple = sslog_new_triple_detached(
-            feedback_uri,
-            "http://oss.fruct.org/smartcare#hasResponse",
-            SS_RDF_SIB_ANY,
-            SS_RDF_TYPE_URI, SS_RDF_TYPE_URI);
-
-    list_t *uris = sslog_node_query_triple(node_ss, req_triple);
-    sslog_free_triple(req_triple);
-
-    list_head_t *iterator = NULL;
-    char *item_uri;
-    list_for_each(iterator, &uris->links){
-        list_t *list_node = list_entry(iterator, list_t, links);
-        char *_item_uri = (char *) ((sslog_triple_t*) list_node->data)->object;
-        if(_item_uri != NULL){
-            item_uri = _item_uri;
-        }
-        sslog_individual_t *response_ss = sslog_node_get_individual_by_uri(node_ss,  item_uri);
-        sslog_individual_t *question_ss  = sslog_node_get_property(node_ss, response_ss, PROPERTY_ANWEREDTO);
-        char *question_uri = sslog_entity_get_uri(question_ss);
-        /*
-         * items
-         */
-        /*
-         *
-         */
-
-        jobject *response;
-        response = (*env)->NewObject(env, class_response,  response_constructor,
-                                        (*env)->NewStringUTF(env, item_uri),
-                                        (*env)->NewStringUTF(env, question_uri));
-        kp_get_response_items(env,response,node_ss, response_ss);
-
-        (*env)->CallVoidMethod(env, feedback_obj, add_response, response);
-    }
-    list_free_with_nodes(uris, NULL);
-
-}
-
-int kp_get_response_items(JNIEnv* env, jobject *response, sslog_node_t *node_ss, sslog_individual_t *response_ss) {
-
-    sslog_individual_t *response_items_ss  = sslog_node_get_property(node_ss, response_ss, PROPERTY_HASRESPONSEITEM);
-    char *response_items_ss_uri = sslog_entity_get_uri(response_items_ss);
-    sslog_node_populate(node_ss, response_items_ss);
-
-    char* text = NULL;
-    sslog_individual_t *response_items_text_ss  = sslog_get_property( response_items_ss, PROPERTY_CONTAINSTEXT);
-    if (response_items_text_ss != NULL){
-        text = sslog_node_get_property(node_ss, response_items_text_ss, PROPERTY_RESPONSETEXT);
-    }
-
-    char* file = NULL;
-    sslog_individual_t *response_items_file_ss  = sslog_get_property( response_items_ss, PROPERTY_CONTAINSFILE);
-    if (response_items_file_ss != NULL){
-        file = sslog_node_get_property(node_ss, response_items_file_ss, PROPERTY_RESPONSETEXT);
-    }
 
 
-    jobject *response_item;
-    response_item = (*env)->NewObject(env, class_response_item,  response_item_constructor,
-                                 (*env)->NewStringUTF(env, response_items_ss_uri),
-                                 (*env)->NewStringUTF(env, text),
-                                 (*env)->NewStringUTF(env, file));
+    sslog_insert_property(feedback, PROPERTY_FEEDBACKDATE, feedback_date);
+    sslog_node_insert_individual(node, feedback);
+    sslog_node_insert_property(node, patient, PROPERTY_HASFEEDBACK, feedback);
 
-
-    sslog_triple_t *req_triple = sslog_new_triple_detached(
-            response_items_ss_uri,
-            "http://oss.fruct.org/smartcare#linkedWithItem",
-            SS_RDF_SIB_ANY,
-            SS_RDF_TYPE_URI, SS_RDF_TYPE_URI);
-
-    list_t *uris = sslog_node_query_triple(node_ss, req_triple);
-    sslog_free_triple(req_triple);
-
-    list_head_t *iterator = NULL;
-    char *item_uri;
-    list_for_each(iterator, &uris->links){
-        list_t *list_node = list_entry(iterator, list_t, links);
-        char *_item_uri = (char *) ((sslog_triple_t*) list_node->data)->object;
-        if(_item_uri != NULL) {
-            item_uri = _item_uri;
-            sslog_individual_t *linked_answer_item_ss = sslog_node_get_individual_by_uri(node_ss,item_uri);
-            add_linked_answer_item_to_response(env, response_item, node_ss, linked_answer_item_ss);
-        }
-
-    }
-    list_free_with_nodes(uris, NULL);
-
-    (*env)->CallVoidMethod(env, response, add_response_item, response_item);
-
+    //update in SmartSpace Patient's property: feedback_date
+    //char *feedback_from_ss = sslog_node_get_property(node, patient, PROPERTY_FEEDBACKDATE);
+    //sslog_node_update_property(node, patient,  PROPERTY_FEEDBACKDATE, feedback_from_ss,feedback_date);
     return 0;
 }
-
-int add_linked_answer_item_to_response(JNIEnv* env, jobject *response_item,  sslog_node_t *node_ss, sslog_individual_t *item){
-
-        sslog_node_populate(node_ss, item);
-        char* answer_item_uri = sslog_entity_get_uri(item);
-        char* item_score = (char *) sslog_get_property(item, PROPERTY_ITEMSCORE);
-        char* item_text = (char *) sslog_get_property(item, PROPERTY_ITEMTEXT);
-        sslog_individual_t *subitem = ( sslog_individual_t *) sslog_get_property(item, PROPERTY_SUBANSWER);
-
-        jobject *linked_answer_item;
-        linked_answer_item = (*env)->NewObject(env, class_answer_item, item_constructor,
-                                          (*env)->NewStringUTF(env, answer_item_uri),
-                                          (*env)->NewStringUTF(env, item_score),
-                                          (*env)->NewStringUTF(env, item_text));
-
-        (*env)->CallVoidMethod(env, response_item, add_linked_answer_item, linked_answer_item);
-
-
-        return 0;
-    }
-
-
-
