@@ -384,20 +384,29 @@ JNIEXPORT jint JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_sen
 
 JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getPersonInformation
 (JNIEnv *env, jobject thiz, jlong nodeDescriptor, jstring personUri){
-    __android_log_print(ANDROID_LOG_INFO, TAG, "Начало1");
     sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
     if (node == NULL){
         return -1;
     }
-    __android_log_print(ANDROID_LOG_INFO, TAG, "Начало2");
-    const char * person_uri= (*env)->GetStringUTFChars(env, personUri, 0);
-    __android_log_print(ANDROID_LOG_INFO, TAG, "Начало3");
+    const char *person_uri= (*env)->GetStringUTFChars(env, personUri, 0);
     sslog_individual_t *person = sslog_node_get_individual_by_uri(node, person_uri);
 
     char *person_information;
-    __android_log_print(ANDROID_LOG_INFO, TAG, "Начало4");
     //person_information = (char *) sslog_node_get_property(node, person, PROPERTY_PERSONINFORMATION);
     person_information = (char *) sslog_node_get_property(node, person, PROPERTY_NAME);
-    __android_log_print(ANDROID_LOG_INFO, TAG, "Начало5");
     return (*env)->NewStringUTF(env, person_information);
+}
+
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getPatientList
+        (JNIEnv* env, jobject thiz , jlong nodeDescriptor){
+
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL ){
+        __android_log_print(ANDROID_LOG_INFO, TAG, "Node Error");
+        return NULL;
+    }
+    char* patient_uri;
+    sslog_individual_t *patient_ss =  kp_get_patient_list(node, &patient_uri);
+
+    return (*env)->NewStringUTF(env, patient_uri);
 }

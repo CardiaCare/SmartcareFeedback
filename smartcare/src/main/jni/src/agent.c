@@ -669,3 +669,27 @@ int kp_send_feedback(long nodeDescriptor, char *patient_uri, char *feedback_date
     //sslog_node_update_property(node, patient,  PROPERTY_FEEDBACKDATE, feedback_from_ss,feedback_date);
     return 0;
 }
+
+sslog_individual_t* kp_get_patient_list(sslog_node_t *node, char **patient_uri){
+    list_t* patients;
+
+    patients = sslog_node_get_individuals_by_class(node, CLASS_PATIENT);
+
+    if (list_is_null_or_empty(patients) == true) {
+        __android_log_print(ANDROID_LOG_INFO, TAG,"There are no such individuals.");
+        return NULL;
+    }
+    sslog_individual_t *patient_ss = NULL;
+    list_head_t *pos = NULL;
+
+    char* uri;
+    list_for_each(pos, &patients->links)
+    {
+        list_t *node = list_entry(pos, list_t, links);
+        patient_ss = (sslog_individual_t *) node->data;
+        sslog_triple_t *patient_uri_from_triple = sslog_individual_to_triple (patient_ss);
+        uri  = patient_uri_from_triple->subject;
+        *patient_uri = uri;
+        return patient_ss;
+    }
+}

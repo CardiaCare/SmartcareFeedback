@@ -48,6 +48,8 @@ jobject kp_get_first_question(JNIEnv* , jobject *, sslog_node_t *, sslog_individ
 
 sslog_individual_t * kp_get_questionnaire(sslog_node_t *node_ss, char**);
 
+sslog_individual_t * kp_get_patient_list(sslog_node_t *node_ss, char**);
+
 int kp_get_answer(JNIEnv* , jobject *, sslog_node_t *, sslog_individual_t*);
 int kp_get_subanswer(JNIEnv* , jobject *, sslog_node_t *, sslog_individual_t* );
 int get_subclasses(sslog_node_t *, char *, char** );

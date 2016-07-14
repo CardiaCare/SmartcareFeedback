@@ -28,6 +28,7 @@ public class SmartCareLibrary {
     public native String  sendAlarm(long nodeDescriptor, String patientUri);
     static public native int sendLocation(long nodeDescriptor, String patientUri, String locationUri ,String latitude, String longitude);
     static public native int sendFeedback(long nodeDescriptor, String patientUri, String feedbackDate);
+    public native String getPatientList(long nodeDescriptor);
 
 
     static public native int insertPersonName(long nodeDescriptor, String patientUri, String name);

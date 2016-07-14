@@ -19,6 +19,8 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.petrsu.cardiacare.smartcare.*;
 
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private GoogleApiClient client;
 
     static protected String medicUri;
+    static protected String patientUri;
     static public SmartCareLibrary smart;
     static public long nodeDescriptor = -1;
     static public Feedback feedback;
@@ -284,8 +287,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void showPatientList() {
 
-        String patientInformation = smart.getPersonInformation(nodeDescriptor, "71191");
+        String patientInformation = smart.getPersonInformation(nodeDescriptor, "http://oss.fruct.org/smartcare#533721");
         Log.i(TAG, "patient information: " + patientInformation);
-
+        patientUri = smart.getPatientList(nodeDescriptor);
+        //Log.i(TAG, "patientUri: " + patientUri);
+        LinkedList <String> linkedList = new LinkedList<>();
+        linkedList.add(patientUri);
+        Log.i(TAG, linkedList.toString());
     }
 }
