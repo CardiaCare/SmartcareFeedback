@@ -287,12 +287,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void showPatientList() {
 
-        String patientInformation = smart.getPersonInformation(nodeDescriptor, "http://oss.fruct.org/smartcare#533721");
-        Log.i(TAG, "patient information: " + patientInformation);
+        String patientInformation;
+        String feedbackDate;
         patientUri = smart.getPatientList(nodeDescriptor);
-        //Log.i(TAG, "patientUri: " + patientUri);
         LinkedList <String> linkedList = new LinkedList<>();
         linkedList.add(patientUri);
         Log.i(TAG, linkedList.toString());
+        patientInformation = smart.getPersonInformation(nodeDescriptor, patientUri);
+        Log.i(TAG, "patient information: " + patientInformation);
+        feedbackDate = smart.getFeedbackDate(nodeDescriptor, patientUri);
+        Log.i(TAG, "feedback date: " + feedbackDate);
+
     }
 }

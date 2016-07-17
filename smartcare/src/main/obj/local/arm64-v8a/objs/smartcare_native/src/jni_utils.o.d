@@ -1,77 +1,77 @@
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/obj/local/arm64-v8a/objs/smartcare_native/src/jni_utils.o: \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/jni_utils.c \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/jni_utils.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/globals.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/ontology/smartcare.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/smartslog.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/session.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/entity.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/triple.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/ckpi/ckpi.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/ckpi/sib_access_tcp.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/bool.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/kpi_api.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/debug.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/list.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/bool.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/high_api.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/subscription.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/subscription_changes.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/errors.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../session.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/util_func.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../triple.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../utils/bool.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/list.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../entity.h \
- /home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../triple.h
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/obj/local/arm64-v8a/objs/smartcare_native/src/jni_utils.o: \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/jni_utils.c \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/jni_utils.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/globals.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/ontology/smartcare.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/smartslog.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/session.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/entity.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/triple.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/ckpi/ckpi.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/ckpi/sib_access_tcp.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/bool.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/kpi_api.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/debug.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/list.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/bool.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/high_api.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/subscription.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/subscription_changes.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/errors.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../session.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/util_func.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../triple.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../utils/bool.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/list.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../entity.h \
+ /Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../triple.h
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/jni_utils.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/jni_utils.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/globals.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/src/globals.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/ontology/smartcare.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/ontology/smartcare.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/smartslog.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/smartslog.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/session.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/session.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/entity.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/entity.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/triple.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/triple.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/ckpi/ckpi.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/ckpi/ckpi.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/ckpi/sib_access_tcp.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/ckpi/sib_access_tcp.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/bool.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/bool.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/kpi_api.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/kpi_api.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/debug.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/debug.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/list.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/list.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/bool.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/bool.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/high_api.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/high_api.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/subscription.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/subscription.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/subscription_changes.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/subscription_changes.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/errors.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/errors.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../session.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../session.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/util_func.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/util_func.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../triple.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../triple.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../utils/bool.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../utils/bool.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/list.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/list.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../entity.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../entity.h:
 
-/home/kristinka/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../triple.h:
+/Users/Kiribaz/AndroidStudioProjects/SmartcareFeedback/smartcare/src/main/jni/SmartSlog/utils/../triple.h:

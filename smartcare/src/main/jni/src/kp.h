@@ -78,6 +78,9 @@ JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_
 JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getPersonInformation
 (JNIEnv *, jobject, jlong,jstring);
 
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getFeedbackDate
+(JNIEnv *, jobject, jlong,jstring);
+
 JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getPatientList
 (JNIEnv *, jobject, jlong,jstring);
 

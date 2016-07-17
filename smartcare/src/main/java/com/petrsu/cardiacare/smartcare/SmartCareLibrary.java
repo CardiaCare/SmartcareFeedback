@@ -17,6 +17,7 @@ public class SmartCareLibrary {
     public native String getQuestionnaireVersion(long nodeDescriptor,String questionnaireUri);
     public native String getQuestionnaireSeverUri(long nodeDescriptor,String questionnaireUri);
     public native String getPersonInformation(long nodeDescriptor,String personUri);
+    public native String getFeedbackDate(long nodeDescriptor,String personUri);
 
 
     public native String initPatient (long nodeDescriptor);

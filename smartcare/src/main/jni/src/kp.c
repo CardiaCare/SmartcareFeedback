@@ -397,6 +397,20 @@ JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_
     return (*env)->NewStringUTF(env, person_information);
 }
 
+JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getFeedbackDate
+(JNIEnv *env, jobject thiz, jlong nodeDescriptor, jstring personUri){
+    sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
+    if (node == NULL){
+        return -1;
+    }
+    //const char *person_uri= (*env)->GetStringUTFChars(env, personUri, 0);
+    //sslog_individual_t *person = sslog_node_get_individual_by_uri(node, person_uri);
+
+    sslog_individual_t *feedback_date;
+    feedback_date = (sslog_individual_t *) sslog_node_get_property(node, personUri, PROPERTY_HASFEEDBACK);
+    return (*env)->NewStringUTF(env, feedback_date);
+}
+
 JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getPatientList
         (JNIEnv* env, jobject thiz , jlong nodeDescriptor){
 

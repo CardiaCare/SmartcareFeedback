@@ -659,7 +659,6 @@ int kp_send_feedback(long nodeDescriptor, char *patient_uri, char *feedback_date
         return -1;
     }
 
-
     sslog_insert_property(feedback, PROPERTY_FEEDBACKDATE, feedback_date);
     sslog_node_insert_individual(node, feedback);
     sslog_node_insert_property(node, patient, PROPERTY_HASFEEDBACK, feedback);
