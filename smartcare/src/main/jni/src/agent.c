@@ -388,7 +388,7 @@ jobject kp_get_first_question(JNIEnv* env, jobject *questionnaire, sslog_node_t 
     if(first_question == NULL){
         return -1;
     }
-
+//
     char *question_uri;
     sslog_triple_t *question_uri_from_triple = sslog_individual_to_triple (first_question);
     question_uri  =  question_uri_from_triple->subject;

@@ -396,7 +396,7 @@ JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_
     person_information = (char *) sslog_node_get_property(node, person, PROPERTY_NAME);
     return (*env)->NewStringUTF(env, person_information);
 }
-
+//
 JNIEXPORT jstring JNICALL Java_com_petrsu_cardiacare_smartcare_SmartCareLibrary_getFeedbackDate
 (JNIEnv *env, jobject thiz, jlong nodeDescriptor, jstring personUri){
     sslog_node_t *node = (sslog_node_t *) nodeDescriptor;
