@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
 //        locationUri = smart.initLocation(nodeDescriptor,patientUri);
 //        if (locationUri == null) {
 //            return false;
-///        }
+//        }
 
         return true;
     }
